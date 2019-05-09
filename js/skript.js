@@ -17,10 +17,9 @@ gameButton.addEventListener('click', function() {
     bank += clickValue;
     gameButton.textContent = Math.floor(bank);
 });
-/* skapa ett powerup-element */
+/* Första knappen och dess värden */
 let powerUp = document.createElement("button");
 powerUp.textContent = "THE FOOTBALL " + pupCost1;
-
 powerUp.addEventListener('click', function() {
     if (bank >= pupCost1) {
 		clickValue *= 2;
@@ -37,7 +36,7 @@ powerUp.addEventListener('click', function() {
         bankElement.textContent = "MARCHING ON TOGETHER";
     }
 });
-/* skapa ett powerup-element */
+/* Andra knappen och dess värden */
 let powerUrp = document.createElement("button");
 powerUrp.textContent = "THE CLUB " + pupCost2;
 powerUrp.addEventListener('click', function() {
@@ -55,7 +54,7 @@ powerUrp.addEventListener('click', function() {
             bankElement.textContent = "LEEDS LEEDS LEEDS";
         }
 });
-
+/* Funktion för att få auto-clickern att fungera*/
 function step() {
     bank += Powerval;
     gameButton.textContent = Math.floor(bank);
