@@ -10,7 +10,7 @@ let bank = 0;
 let pupCost1 = 10;
 let pupCost2 = 15;
 let pup1Clicks = 0;
-let refClock = 0;
+let Powerval = 0;
 
 /* lyssna på knappen efter click event */
 gameButton.addEventListener('click', function() {
@@ -28,17 +28,15 @@ powerUp.addEventListener('click', function() {
         pupCost1 *= 3;
         pup1Clicks += 10;
         gameButton.textContent = bank; 
-       bankElement.textContent = "Du köpte THE FOOTBALL!"
+       bankElement.textContent = "You bought THE FOOTBALL!"
        powerUp.textContent = "THE FOOTBALL " + pupCost1;
     } else {
-        bankElement.textContent = "Du har inte råd med THE FOOTBALL!";
+        bankElement.textContent = "You can NOT afford THE FOOTBALL!";
     }
     if (bank >= 1000000) {
-        bankElement.textContent = "LEEDS LEEDS LEEDS";
+        bankElement.textContent = "MARCHING ON TOGETHER";
     }
 });
-powerUpsDiv.appendChild(powerUp);
-
 /* skapa ett powerup-element */
 let powerUrp = document.createElement("button");
 powerUrp.textContent = "THE CLUB " + pupCost2;
@@ -46,15 +44,24 @@ powerUrp.addEventListener('click', function() {
     if (bank >= pupCost2) {
         bank = bank - pupCost2;
         pupCost2 *= 2;
-        bank = bank * 2;
+        Powerval += 0.1;
         gameButton.textContent = bank;
-        bankElement.textContent = "Du köpte THE TEAM!";
+        bankElement.textContent = "You bought THE TEAM!";
         powerUrp.textContent = "THE TEAM " + pupCost2;
-    } else
-        bankElement.textContent = "Du har inte råd med THE TEAM!";
+    } else {
+        bankElement.textContent = "You can NOT afford THE TEAM!";
+    }
         if (bank >= 1000000) {
             bankElement.textContent = "LEEDS LEEDS LEEDS";
         }
 });
 
+function step() {
+    bank += Powerval;
+    gameButton.textContent = Math.floor(bank);
+    window.requestAnimationFrame(step);
+}
+
+window.requestAnimationFrame(step);
+powerUpsDiv.appendChild(powerUp);
 powerUpsDiv.appendChild(powerUrp);
